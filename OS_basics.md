@@ -56,3 +56,36 @@ Some points for threads:
 	- So, kernel will block the process, because kernel doesn't knows that this particular process consists of 3 threads.
 	- Because, these threads are created as **user-level** not **system-level** process.
 * ***Threads are interdependent.***
+
+# Types of Threads:
+
+* User Level Threads
+* Kernel Level Threads
+
+## User Level Threads:
+
+* User level threads are managed by the User level library.
+	- Like if we are writing a C program and use `pthread.h` which is library for creating threads.
+	- So, functionalities like `pthread_create, pthread_join` are user level.
+	- Time consumin is very low.
+* User level threads are typically fast.
+	- These are created by _APIs_, so OS is only responsible for execution and nothing else.
+* Context switching is faster.
+	- Context switching only happen in stack(registers set) for each thread.
+	- As the user-level threads share `code & data.`
+	- This doesn't require OS to interfere which makes it faster.
+* If one user level threads perform blocking operation then entire process will be blocked.
+	- So using different models we tell kernel that we had used multi-threading in this process
+
+## Kernel Level Threads:
+
+* Kernel level threads are managed by OS.
+	- These are created using **system calls**
+	- This will take more time
+* Kernel leve threads are slower.
+	- In time consuming meter, this is almost similar to creating a new process(child).
+* Context switching is slower.
+	- Previously told.
+	- We can tell following order for time consuming for context switching:
+		+ Processes > Kernel level threads > User level threads
+* If one kernel level thread blocked, it doesn't affects others.
