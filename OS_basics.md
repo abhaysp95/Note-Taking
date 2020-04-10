@@ -1,3 +1,6 @@
+# Some notes on OS basics
+---
+
 # Processes vs. Threads
 
 In a broad sense we can say, a process consist of following things(using stack implementation):
