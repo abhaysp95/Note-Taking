@@ -35,6 +35,12 @@ Some points for **Processes** process:
 	- Same thing for one child process to another.
 * ***So, this is independent.***
 
+Here, is explanation of fork:
+![fork1](images/OS_basics_img/fork2.jpg)
+
+more on fork()
+![fork2](images/OS_basics_img/fork1.jpg)
+
 ## Threads
 
 Some points for threads:
@@ -140,4 +146,258 @@ Two things to take care of here:
 * Highest priority process should not be interrupted.
 
 Here's a screenshot to clear out.
-![Multilevel Feedback Queue Scheduling](images/2020-04-11-161313_863x442_scrot.png)
+![Multilevel Feedback Queue Scheduling](images/OS_basics_img/mqfs.jpg)
+
+# Process Synchronization
+
+In multiprocessing environment, another process should not start till first process is complete.
+This is called Process Synchronization.
+
+Process Synchronization mainly deals with two types of process:-
+* Co-operative Process
+* Independent Process
+
+## Co-Operative Process - 
+Processes whose execution affects another process. This happens because of sharing.
+They can share _variable, memory(buffer), code, resources(CPU, printers etc.)_.
+
+## Independent Process -
+Process whose execution doesn't affects another process. So, it's obvious that they have nothing in common.
+
+# Race Condition:
+Here is the image captured explaining race condition:
+![race codition](images/OS_basics_img/race_cond.jpg)
+
+So, if co-operative process isn't synchronized properly, they can create some problem.
+
+# Critical Section
+It is a part of the program a shared resource is accessed by the various process.
+These processes are co-operative. Also, these are con-current process.
+
+So, if two concurrent programs have something in common, then those things will be put in critical section.
+Non-common things are put in non-critical section.
+
+Critical section is a place where _shared variables, resources_ are placed.
+
+If a program is accessing a critical section then another program should not access it.
+If it happens then **Race Condition** will occur. To avoid _race condition_, synchronization is done in these processes in critical section.
+
+Different methods like **Semaphore, monitor, lock-variables etc.**.
+
+So, we define a _entry section_ before critical section in concurrent programs.
+If condition satisfies then critical section can be accessed.
+
+There can also be a **exit section** after critical section in concurrent process.
+
+# Synchronization Mechanism
+
+4 conditions for any synchronization method:
+* mutual exclusion
+* progress
+* bounded wait
+* No assumption related to hardware or speed
+
+First two rules are mendatory for process synchronization.
+
+Let's there are two process **P1 and P2**. If P1 is in critical section then P2 must not get to entry section.
+If this is achieved then **Mutual Exclusion** is achieved.
+
+Let's say, there is not any process executing common code of critical section at give particular time.
+That means, critical section is currently empty.
+Now, let's say _P1_ is intersted to go into critical section but _P2_ is blocking P1
+because P2's entry section may contain such code which code block P1 to access critical section or vice versa
+then there isn't **Progress.**
+So, _progress_ is must for synchronization.
+
+Now, let's say _P1_ accessed critical section and _P2_ not.
+Again _P1_ enters critical section and P2 doesn't, still no problem.
+But, if this continuous for **infinite** times, means
+> P1 -> infinite		P2 -> 0
+then this condition is known as **Unbound Wait** condition.
+
+If, it is like
+> p1 -> 10				P2 -> 1
+then it is **Bound wait** condition. Means, P2 still gets access of critical section.
+
+Now, let's say someone gave a mechanism which have some conditons like this:
+- it'll work on 2 Ghz processor fastly
+- it'll require 32bit system.
+
+Then this is not an ideal mechanism to achieve _synchronization_.
+All the mechanism should be:
+- portable
+- cross-plateform
+- kind-of universal
+- easily portable
+- easily modifiable
+
+So, primary conditions for synchronization mechanims are:
+- Mutual Exclusion
+- Progress
+And secondary condtions are
+- Bound
+- No assumption related to hardware or speed
+
+# Classical Problem Of Synchronization
+
+* Classical problems synchronization:
+	* Producer & Consumer(Bounded-Buffer) Problem
+	* Printer Spooler Problem
+	* Readers and Writers Problem
+	* Dining-Philosophers Problem
+	* Sleeping Barber Problem
+
+## Producer-Consumer problem
+
+Standard problem for multi-process for process synchronization. It's generated in co-operative processes.
+
+Two types of processes are there:
+* Producer process - produce the information
+* Consumer process - consume the information produced by producer
+
+* Producer process produces information that is consumed by a Consumer process.
+* The information is passed from the Producer to the Consumer via a **buffer**.
+
+Two types of buffers can be used:
+* `unbounded-buffer` places no practical limit on the size of the buffer
+* `bounded-buffer` assumes that a fixed buffer size
+
+Three things to take care of:
+* When the `buffer` is full, no producer process will produce anything.
+* When the `buffer` is empty, no consumer process will consume the data.
+* No producer or consumer problem should work simultaneous on bounded buffer because buffer size is limited so we have to establish a synchronization between producer and consumer.
+
+We can implement producer-consumer buffer with the `linear` or `circular` queue, with the position of `front` as _producer_ and `rear` as _consumer_.
+
+Two ways to solve:
+
+* **Simple Queue(Shared data):**
+
+```c
+# define BUFFER SIZE 8
+
+int buffer [BUFFER SIZE];
+
+int in = 0;  // in points to next free positon
+int out = 0;  // out points to first full postion
+int Counter = 0;
+```
+	Counter is incremented every time we(producer) add a new item(data) to the buffer & decremented every time we(consumer) remove one item from the buffer.
+
+**producer problem**
+```c
+while (True) {
+	/* produce an item is nextProduced*/
+	produce.item(nextProduced);
+	while (counter == BUFFER_SIZE);
+	/* do nothing */
+	buffer[in] = nextProduced;
+	in = (in + 1) % BUFFER_SIZE;
+	counter ++;
+}
+```
+
+**in** is address for empty slot in buffer.
+
+Let's see how **counter++** works in assembly mode.
+- load _counter's value_ into a register(let's say _Rp_)
+- Increament _Rp_
+- load _Rp_ register's value to counter
+
+**Consumer problem**
+```c
+while (True) {
+	while (counter == 0); /* do nothing */
+	nextConsumed = buffer[out];
+	out = (out + 1) % BUFFER_SIZE;
+	counter --;
+	/* consume the item in nextConsumed */
+	process.item(nextConsumed);
+}
+```
+
+**out** is address for filled slot in buffer.
+
+Here, also counter will work in same as shown above.
+
+We can see that this problem occurs in co-operative process, because both the program share same buffer(stack)
+and **counter** variable.
+
+Let's take a scenerio, where a buffer is half filled and process is going to increment counter but an interruption occurs, then context switching happens and control goes to consumer but when counter is decrementing again context switching occurs, like following flow:
+
+> Producer > I1, I2 > Consumer > I1, I2 > Process > I3 > Consumer > I3
+
+Now, according to this flow, we get value of **counter** 5 with producer, and value of **counter** is 3 by consumer. While, we have 4 in buffer. This leads to **Race Condition**. This happens vice-versa.
+
+So, this is the **Producer Consumer Problem**.
+
+# Printer Spooler Problem
+This is a standard problem of process synchronization.
+In this, we have a printer in network and several users to access that printer.
+Printer is very slow peripheral device.
+
+Spooler is like a program which stores all the data to print in a stack(or other) in sequential manner and then passes one by one.
+
+If process wants to put docuement in spooler directory, then it has to execute these 4 lines of code:
+```
+* Load Ri, m[in]	// in tells position of empty slots, Ri is register with _i_ index
+* Store SD[Ri], "File-name"		// SD -> spooler directory
+* Increament Ri
+* Store m[in], Ri
+```
+
+In case, if two or more co-operative process came to put docuemtn in spooler directory, they'll share _in_ variable.
+This also have problem of process synchronization.
+
+Let's say there are two co-operative process _P1 and p2_ to store file _F1.doc and F2.doc_. At current the value of _in_ is 0. Now, take this flow:
+
+> P1 > I1, I2, I3 > P2 > I1, I2, I3, I4 > P1 > I4
+
+Now, _in_ will point to 1, which is correct. But P2 will overwrite the file which P1 had stored before in 0 index.
+Above scenerio can happen vice-versa also. It is one of the cases.
+
+So, because of no synchronization, a process lost it's data.
+
+# Semaphore
+This is a method to prevent **Race Condition**, which mostly happens in co-operative processes(can happen in others also) which leads to _loss of data, deadlock etc._
+
+**Semaphore** is an integer variable which is used in mutual exclusive manner by various concurrent co-operative process in order to achieve synchronization.
+
+Semaphore is used basically in two types:
+* Counting
+* Binary
+
+Now, we know _critical section_ contains common code for multiple co-operative processes.
+But before accessing _CS_, process have to get through _entry code_ and after _CS_ then _exit section_. After that, process could be terminated.
+There are various operations for _entry_ and _exit_ code. They are:
+
+* P(), Down, Wait		// these are synonyms of one another
+* V(), Up, Signal, Post, Release
+
+They are are corresponding like P() -> V(), Down -> Up, Wait -> Signal/Post/Release
+
+Now, presently critical section is free. So, to get entry in _CS_ process(P1) has to go to entry section, whose pseudo code is:
+```c
+Down(Semaphore S) {		// S in semaphore integer
+	S value = S value - 1;
+	if (S value < 0) {
+	Put process (PCB) in suspended list, Sleep();
+	}
+	else
+		return ;
+}
+```
+If a process gets to critical section, it is considered successful, if it goes to block state, then it is considered unscuccessful.
+
+If process has executed entry section and then _CS_, then it has to go through _exit section_, pseudo code is: 
+```c
+Up(Semaphore S) {
+	S value = S value + 1;
+	if (S value <= 0) {
+		Select a process from suspended list, WakeUp();
+	}
+}
+```
+
+## Counting Semaphore
+In counting semaphore, _integer variable_ varies in between **-ve infinity** to **+ve infinity**.
