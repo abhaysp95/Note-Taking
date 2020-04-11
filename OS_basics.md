@@ -89,3 +89,22 @@ Some points for threads:
 	- We can tell following order for time consuming for context switching:
 		+ Processes > Kernel level threads > User level threads
 * If one kernel level thread blocked, it doesn't affects others.
+
+# User Mode vs. Kernel Mode:
+
+Let's take an example, suppose I opened a text editor in linux system and typed a program to read a file and write something into it.
+Now, data is stored in _storage drive(HDD, SSD etc)_. So, after `user-process executing` a `get system call` will happen.
+Like in program `Read()` will happen.
+
+Now, as Read() will happen, a **trap()**(interrupt) is set up. Now, I as soon as we shift from user mode to kernel mode, mode bit changes from **1 to 0**.
+
+Yes, Mode bit for **User mode** is 1.
+Mode bit for **Kernel mode** is 0.
+
+Now, system call will be executed and after that we'll come back to user mode, because user works in User mode.
+And, also mode bit changes to 1 from 0.
+
+Let's take another example, there's a C program in which it is written to add two number.
+Now, this doesn't require kernel to process. But, if wrote `printf()` to show output in monitor, it requires kernel mode.
+
+So, _user mode_ and _kernel mode_ in combination is called **Dual Mode.**
