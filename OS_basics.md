@@ -108,3 +108,36 @@ Let's take another example, there's a C program in which it is written to add tw
 Now, this doesn't require kernel to process. But, if wrote `printf()` to show output in monitor, it requires kernel mode.
 
 So, _user mode_ and _kernel mode_ in combination is called **Dual Mode.**
+
+# Multilevel Queue Scheduling
+
+This type of scheduling tells that for each type of process there should be a different **ready queue**.
+Before, it we used a single ready queue for all types of process.
+
+The processs could be of following types:
+* Highest Priority -> system process(interrupts etc.)
+* Medium Priority -> interactive process(movie watching, programming etc.)
+* Lowest Priority -> background process
+
+So, every type of process have their own ready queue.
+
+Now, scheduling algorithms could may or may not be different for each type of process.
+Like, for above given three types of process, OS could use
+* Round Robin
+* Shortest Job First
+* First Come First Serve
+
+They could be same also. Now, these are feeded to CPU.
+Now, there's a problem also. If OS had too many _system processes_, then processes with medium and low priority will _starve_.
+Solution could be **Multilevel Feedback Scheduling**.
+
+# Multilevel Feedback Queue Scheduling
+
+As seen above, if lowest priority process gives feedback and OS upgrade it, the starvation could be avoided.
+
+Two things to take care of here:
+* Lowest priority process should be upgraded.
+* Highest priority process should not be interrupted.
+
+Here's a screenshot to clear out.
+![Multilevel Feedback Queue Scheduling](images/2020-04-11-161313_863x442_scrot.png)
