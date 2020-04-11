@@ -234,6 +234,7 @@ All the mechanism should be:
 So, primary conditions for synchronization mechanims are:
 - Mutual Exclusion
 - Progress
+
 And secondary condtions are
 - Bound
 - No assumption related to hardware or speed
