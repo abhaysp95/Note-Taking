@@ -612,11 +612,12 @@ For better understanding, see the table below to see which philosopher is relate
 
 > Rule is: S[i] and S[(i + 1) % N]
 
-| P0 | S0 | S1 |
-| P1 | S1 | S2 |
-| P2 | S2 | S3 |
-| P3 | S3 | S4 |
-| P4 | S4 | S0 |
+| P0  | S0  | S1  |
+| --- | --- | --- |
+| P1  | S1  | S2  |
+| P2  | S2  | S3  |
+| P3  | S3  | S4  |
+| P4  | S4  | S0  |
 
 Now, in mutual exclusion we know that only process can be in _critical section_ at a time. But see this, if `P0` goes in then `P1` can't(S1 will already be 0). Now, if `P2` tries to go in, it can easily go to _CS_. So, we saw that in _dining philosopher_, this is a special case that
 
@@ -651,11 +652,12 @@ So, this is a state of **Deadlock.**
 The best solution, we get to avoid this _deadlock_ is if way change the sequence of `take-fork();` for `last philosopher`. Means the table will look something like this
 
 
-| P0 | S0 | S1 |
-| P1 | S1 | S2 |
-| P2 | S2 | S3 |
-| P3 | S3 | S4 |
-| P4 | S0 | S4 |
+| P0  | S0  | S1  |
+| --- | --- | --- |
+| P1  | S1  | S2  |
+| P2  | S2  | S3  |
+| P3  | S3  | S4  |
+| P4  | S0  | S4  |
 
 So, now let's start from begining. All the `S[i]` are `1` currently. Every philosopher, starts to take it's left fork _one-by-one_. So, now visualize this scenerio again
 
