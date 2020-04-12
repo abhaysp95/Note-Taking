@@ -673,3 +673,65 @@ _P3 can take F4 and eat and after it'll put F3 and F4(put-fork S[i] and put-fork
 It's not mendatory, to reverse the sequence of last philosopher. We can reverse the sequence for any one of the philosopher.
 
 So, this was Dining Philosopher Problem.
+
+# Monitor vs. Semaphore
+
+Semaphore and Monitor both allow process to acces the shared resources in mutual exclusion. Both are the process synchronization tool. Instead, they are very different. **Semaphore** is an integer variable which can be operated only by _wait()_ and _signal()_ operation apart from the initialization.
+
+**Monitor** on the other hand is an abstract data type whose construct allow one process to get activate at one time.
+
+## Compariosion table
+
+| Basis For Compariosion | Semaphore | Monitor |
+| :---: | :---: | :---: |
+| Basic | Semaphore is an integer variable S | Monitor is an abstract data type. |
+| Action | Value of Semaphore S indicates | The Monitor type contains |
+| | the number of shared resources | shared variables and the set of |
+| | available in the system | procedures that operate on the |
+| | shared variable. |
+| Access | When any process access the | When any process wants to |
+| | shared resource it perform wait() | wants to access the shared |
+| | operation on S and when it releases | variables in the monitor, it needs |
+| | the shared resource it performs | to access it through the |
+| | signal() operation on S | procedures |
+| Condition Variable | Semaphore does not have | Monitor has condition |
+| | condition variable | variables |
+
+### Semaphore
+
+Semaphore integer variable S is initialized to the **number of resources** present in the system. The value of semaphore S can be modified only by two functions **wait()** and **signal()** apart from initialization.
+
+In this, no multiple process can simultaneously modify the value of the semaphore. Further, the operating system distinguishes the semaphore in two categories, **Counting** and **Binary** Semaphore.
+
+In **Counting Semaphore**, the value of semaphore S is initialized to the number of resources present in the system. Whenever a process wants to access the shared resources, it performs **wait()** operation on the semaphore which decrements the value of semaphore by one. When it releases the shared resource, it performs a **signal()** operation on the semaphore which increments the value of semaphore by one.
+
+When the semaphore count goes to **0**, it means all resources are occupied by the processes. If a process need to use a resource when semaphore count is 0, it executes wait() and get **blocked** until a process utilizing the shared resources releases it and the value of semaphore becomes greater than 0.
+
+In **Binary semaphore**, the value of semaphore ranges between 0 and 1. It is similar to mutex lock, but mutex is a locking mechanism whereas, the semaphore is a signaling mechanism. In binary semaphore, if a process wants to access the resource it performs wait() operation on the semaphore and decrements the value of semaphore from 1 to 0.
+
+When process releases the resource, it performs a signal() operation on the semaphore and increments its value to 1. If the value of the semaphore is 0 and a process want to access the resource it performs wait() operation and block itself till the current process utilizing the resources releases the resource.
+
+### Monitor
+To overcome the timing errors that occurs while using semaphore for process synchronization, the researchers have introduced a high-level synchronization construct i.e. the **monitor** type. A monitor type is an **abstract data type** that is used for process synchronization.
+
+Being an abstract data type monitor type contains the shared data variables that are to be shared by all the processes and some programmer-defined operations that allow processes to execute in mutual exclusion within the monitor. A process can not directly access the shared data variable in the monitor; the process has to access it through procedures defined in the monitor which allow only one process to access the shared variables in a monitor at a time.
+
+Monitor's syntax is as follow:
+```c
+monitor monitor_name {
+	// shared variable declarations
+	procedure P1 ( . . . ) {
+	}
+	procedure P2 ( . . . ) {
+	}
+	procedure Pn ( . . . ) {
+	}
+	initialization code ( . . . ) {
+	}
+}
+```
+A monitor is a construct such as only one process is active at a time within the monitor. If other process tries to access the shared variable in monitor, it gets blocked and is lined up in the queue to get the access to shared data when previously accessing process releases it.
+
+Conditional variables were introduced for additional synchronization mechanism. The conditional variable **allows a process to wait inside the monitor** and allows a waiting process to resume immediately when the other process releases the resources.
+
+The conditional variable can invoke only two operation wait() and signal(). Where if a process P invokes a wait() operation it gets suspended in the monitor till other process **Q invoke signal()** operation i.e. a signal() operation invoked by a process resumes the suspended process.
