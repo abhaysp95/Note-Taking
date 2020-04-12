@@ -688,7 +688,7 @@ Semaphore and Monitor both allow process to acces the shared resources in mutual
 | Action | Value of Semaphore S indicates | The Monitor type contains |
 | | the number of shared resources | shared variables and the set of |
 | | available in the system | procedures that operate on the |
-| | shared variable. |
+| | | shared variable. |
 | Access | When any process access the | When any process wants to |
 | | shared resource it perform wait() | wants to access the shared |
 | | operation on S and when it releases | variables in the monitor, it needs |
