@@ -463,7 +463,7 @@ This can be happened vice-versa, means consumer can come first and producer late
 
 Now, we'll see solution for concurrent(co-operative) process. Synchronization in those types of process is difficult.
 
-[producer consumer problem using semaphore(preemption)](images/OS_basics_img/pcps2.jpg)
+![producer consumer problem using semaphore(preemption)](images/OS_basics_img/pcps2.jpg)
 
 We are trying to achieve serialization(synchronization) in concurrent processes.
 That was solution of Producer Consumer problem with the use of Semaphore.
