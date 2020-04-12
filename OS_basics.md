@@ -400,5 +400,70 @@ Up(Semaphore S) {
 }
 ```
 
+
+So, basically above metioned method is approach by semaphore to avoid critical section problem.
+
 ## Counting Semaphore
 In counting semaphore, _integer variable_ varies in between **-ve infinity** to **+ve infinity**.
+
+## Binary Semaphore
+In binary semaphore, _integer variable_ varies in between **0 and 1** only.
+
+# Solving Producer Consumer Problem by using Semaphore
+
+We will remove the problem of synchronization which we faced in _Producer Consumer Problem_. Following variables have been taken:
+
+| Semaphore | Variable  | Description         |
+| :---:     | :---:     | :---:               |
+| Counting  | full = 0  | No. of filled slots |
+|           | empty = N | No. of empty slots  |
+| Binary    | S = 1     |                     |
+
+Let's say there are two process _P1 and P2_.
+So, to get through entry section and to get entry in critical section, producer have to go through following piece of code:
+```c
+produce_item(itemp);
+down(s);
+	buffer[in] = itemp;
+	in = (in + 1) % N;
+up(s);
+up(full);
+```
+and consumer have to go through following:
+```c
+down(full);
+down(s);
+	itemC = buffer[out];
+	out = (out + 1) % N;
+up(s);
+up(empty);
+```
+
+Conventions are as follow:
+
+| **funtion/variable Notation** | **Use**                          |
+| :---:                         | :---:                            |
+| up()                          | code for entry section           |
+| down()                        | code for exit section            |
+| S                             | here denoting binary semaphore   |
+|                               | integer variable                 |
+| empty                         | count of empty slots in buffer   |
+| full                          | count of full slots in buffer    |
+| in                            | next empty slot to put data on   |
+| out                           | points to first full slot to get |
+|                               | data out                         |
+
+
+Below is the image to solve producer consumer probelm using _semaphore_.
+![producer consumer problem solution using semaphore(no-preemption)](images/OS_basics_img/pcps1.jpg)
+
+The above method contains no context swtiching.
+It's basically a no-preemption method and it's doing synchronization perfectly.
+This can be happened vice-versa, means consumer can come first and producer later.
+
+Now, we'll see solution for concurrent(co-operative) process. Synchronization in those types of process is difficult.
+
+[producer consumer problem using semaphore(preemption)](images/OS_basics_img/pcps2.jpg)
+
+We are trying to achieve serialization(synchronization) in concurrent processes.
+That was solution of Producer Consumer problem with the use of Semaphore.
