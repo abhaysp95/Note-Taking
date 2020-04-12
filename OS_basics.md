@@ -467,3 +467,83 @@ Now, we'll see solution for concurrent(co-operative) process. Synchronization in
 
 We are trying to achieve serialization(synchronization) in concurrent processes.
 That was solution of Producer Consumer problem with the use of Semaphore.
+
+# Reader Writer Problem
+
+In our database(computer system), we have two types of user operation perform:
+* Reading
+* Writing
+
+Let's take an example:
+```sh
+$ cat file_operations/sample.txt	# this is read operation
+  This is sample.txt
+  It\'s running on hp 245 g5
+  It is a simple text file
+  It\'s kernel is Linux
+  It\'s OS is manjaro with i3 as WM.
+$
+$ echo "$USER" >> file_operations/sample.txt	# this is write operation
+  This is sample.txt
+  It\'s running on hp 245 g5
+  It is a simple text file
+  It\'s kernel is Linux
+  It\'s OS is manjaro with i3 as WM.
+  raytracer
+```
+
+Multiple users(reader or writer) can use data. But there's a catch, if a _reader_ is reading a data
+and a _writer_ comes in same data then this is problem.
+So, problems on same data can be seen like:
+```
+R - W => problem	# R = Reader, W = Writer
+W - R => problem
+W - W => problem
+R - R => no problem
+```
+
+These are standard problems of **DBMS**.
+We'll use _binary semaphore_ to deal with these three problems. Semaphore because we want to synchronize reader and writer process. 
+
+Here is the pseudo code, _reader_ and _writer_ have to execute before getting inside critical section.
+```c
+// global variables
+int rc = 0;		// read count
+semaphore mutex = 1		// binary semaphore variable
+semaphore db = 1		// binary semaphore variable
+
+// reader's code for entry section
+void Reader(void) {
+	while(true) {
+		// semaphore operation
+		down(mutex);	 
+		rc = rc + 1;
+		if (rc == 1) {
+			down(db);
+		}
+		up(mutex);
+
+DATABASE		// database, critical section
+
+		// reader's code for exit section
+		down(mutex);
+		rc = rc - 1;
+		if (rc == 0) {
+			up(db);
+		}
+		up(mutex);
+		Process data	// do data processing
+	}
+}
+
+// writer's code for entry and exit section
+void Writer(void) {
+	while(true) {
+		down(db);
+		DATABASE	// critical section
+		up(db);
+	}
+}
+// I can't understand the use of mutex, code should work fine without it
+```
+In the above mentioned, `db` is an important _variable_ as it controls the reader and writer if any one of them is inside critical section. Also, in the above solution `R - R`(multiple reader's) can get entry to critical section as it isn't a problem. So, we have achieved synchronization and got a way to deal with **Reader Writer Problem.**
