@@ -523,7 +523,7 @@ void Reader(void) {
 		}
 		up(mutex);
 
-DATABASE		// database, critical section
+DATABASE	// database, critical section
 
 		// reader's code for exit section
 		down(mutex);
@@ -547,3 +547,127 @@ void Writer(void) {
 // I can't understand the use of mutex, code should work fine without it
 ```
 In the above mentioned, `db` is an important _variable_ as it controls the reader and writer if any one of them is inside critical section. Also, in the above solution `R - R`(multiple reader's) can get entry to critical section as it isn't a problem. So, we have achieved synchronization and got a way to deal with **Reader Writer Problem.**
+
+# Dining Philosopher Problem
+
+Like others, **Dining Philosopher Problem** is also a standard problem of Operating System.
+
+## What's this problem?
+In this problem, there are 5 `philosophers` around a `dining table` and they all have `fork/spoon/chopstick`(taking fork here). In the center, of table there is a bowl containg `noodle/rice/sphagetti`(taking rice here).
+
+![dining philosopher problem](images/OS_basics_img/din_philos.jpg)
+
+Now, every philosopher is having two states:
+* think
+* eat
+
+So, they think and then after eat(depends on scenerio, but that's the two thing they'll do). But they have to follow a set of rule in this process. Let's consider there are five philosophers `F0, F1, F2, F3, F4` and so five forks `F0, F1, F2, F3, F4`.
+> here 0, 1, 2... are index numbers
+
+These set of rules are given here as pseudo code
+```c
+void Philosopher(void) {
+	while(true) {
+		Thinking();
+		take-fork(i);	// i is index number for philosopher
+		// consider i as left fork of philosopher
+		take-fork((i + 1) % N)	// N is total number of philosopher/fork
+		// consider this as right fork of philosopher
+		EAT();
+		put-fork(i);
+		put-fork((i + 1) % N);
+	}
+}
+```
+
+### case 1:
+Now, according to this code, if philosophers goes one by one to eat then there is no problem. It can be considered as **case 1**.
+
+### case 2:
+Let, `P0` after `thinking()` takes fork `F0`, but before taking _right fork_ `F1` process `P1` comes in and takes fork `F1`. Now, till `P1` hadn't put down it's left fork(), `P0` can't eat as it's his right fork.
+
+This condition could go on. Maybe before _P1_ takes right fork _F2_, P2 comes in and takes it left fork _F2_. So, this leads to **Race Condition**.
+
+To avoid this, we will be using _binary semaphore_. We will take an _array_ of semaphore binary integers **S[i]**. Total size of array will be of total count of _philosophers_. All the integers, (here, total 5) _S[0] S[1] S[2] S[3] S[4]_ will be initialized with value **1**.
+
+So, the above pseudo code will be changed like this
+```c
+void Philosopher(void) {
+	while(true) {
+		Thinking();
+		// entry section
+		wait(take-fork(S[i]));	// down operation semaphore
+		wait(take-fork(S[(i + 1) % n]));
+		// critical section
+		EAT();
+		// exit section
+		signal(put-fork(i));	// up operation semaphore
+		signal(put-fork((i + 1) % N));
+	}
+}
+```
+Now, we know in binary semaphore we take `1` as _green flag_ and `0` as red flag to process to go on. So, according to above code, if any _S[i]_(generally, it will be the left fork of philosopher) is `0` and since it's binary semaphore integer(value can't be down than 0) then that `philosopher` can't go through `entry section`.
+
+For better understanding, see the table below to see which philosopher is related with which semaphore integer
+
+> Rule is: S[i] and S[(i + 1) % N]
+
+| P0 | S0 | S1 |
+| P1 | S1 | S2 |
+| P2 | S2 | S3 |
+| P3 | S3 | S4 |
+| P4 | S4 | S0 |
+
+Now, in mutual exclusion we know that only process can be in _critical section_ at a time. But see this, if `P0` goes in then `P1` can't(S1 will already be 0). Now, if `P2` tries to go in, it can easily go to _CS_. So, we saw that in _dining philosopher_, this is a special case that
+
+`More than a process(philosopher) can enter the critical section but they should be independent(fork/semaphore variable)`.
+
+On the above scenario, `P0` and `P2` are independent, they don't share any common semaphore variable(see table above).
+
+### case 3:
+
+Let's see if deadlock occurs in this problem or not. Visualize the scenario given down:
+> Note: relate forks (like F1, F2, ...) to semaphore integers (like S1, S2, ...)
+
+So, consider the follwing scenario. All the semaphore integers are `1` currently means, no philosopher has taken any fork. Now,
+* Philosopher 0 comes and takes F0 but is preempted(any reason may be time-quantum or low priority) so can't take F1
+* Philosopher 1 and takes it's left fork F1(since it isn't taken by P0 right now) but gets preempted
+* P2 comes and takes it's left fork and gets preempted
+* P3 comes, takes it's left fork and gets preempted
+* P4 comes, takes it's left fork and gets preempted
+
+So, all the process has executed `wait(take-fork(S[i]))` but not `wait(take-fork(S[(i + 1) % n]))`. Now,
+
+* P0 requires right fork F1(S1) but can't. P1 have F1(S1 is already 0).
+* P1 requires F2 but can't. P2 have F2.
+* P2 requires F3 but cant't. P3 have F3.
+* P3 requires F4 but can't. P4 have F4.
+* P4 requires F0 but can't. P0 have F0.
+
+So, as you can see here, all the process have a resource and they requires another resource which they can't get(all S[i] is 0 currently). Now, this can't be undone since no S[i] can be done to 1.
+
+So, this is a state of **Deadlock.**
+
+The best solution, we get to avoid this _deadlock_ is if way change the sequence of `take-fork();` for `last philosopher`. Means the table will look something like this
+
+
+| P0 | S0 | S1 |
+| P1 | S1 | S2 |
+| P2 | S2 | S3 |
+| P3 | S3 | S4 |
+| P4 | S0 | S4 |
+
+So, now let's start from begining. All the `S[i]` are `1` currently. Every philosopher, starts to take it's left fork _one-by-one_. So, now visualize this scenerio again
+
+* Philosopher 0 comes and takes F0 but is preempted(any reason may be time-quantum or low priority) so can't take F1
+* Philosopher 1 and takes it's left fork F1(since it isn't taken by P0 right now) but gets preempted
+* P2 comes and takes it's left fork and gets preempted
+* P3 comes, takes it's left fork and gets preempted
+* P4 comes and now it tries to take it's right fork(not left) but since it's already takeing by _P0(S0 in already 0)_ P4 will be blocked.
+
+In this way, we can avoid deadlock, now
+_P3 can take F4 and eat and after it'll put F3 and F4(put-fork S[i] and put-fork S[(i + 1) % n]). So after P3, both P2 and P4 can eat(if needed) since both are independent._
+
+It's not mendatory, to reverse the sequence of last philosopher. We can reverse the sequence for any one of the philosopher.
+
+So, this was Dining Philosopher Problem.
