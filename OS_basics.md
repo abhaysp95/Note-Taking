@@ -287,7 +287,7 @@ int Counter = 0;
 
 **producer problem**
 ```c
-while (True) {
+while (TRUE) {
 	/* produce an item is nextProduced*/
 	produce.item(nextProduced);
 	while (counter == BUFFER_SIZE);
@@ -404,10 +404,36 @@ Up(Semaphore S) {
 So, basically above metioned method is approach by semaphore to avoid critical section problem.
 
 ## Counting Semaphore
-In counting semaphore, _integer variable_ varies in between **-ve infinity** to **+ve infinity**.
+In counting semaphore, _integer variable_ varies in between **-ve infinity** to **+ve infinity**. It isn't used much because we can do almost all the things which this can do with _binary semaphore_ which only contains 0 and 1.
 
 ## Binary Semaphore
-In binary semaphore, _integer variable_ varies in between **0 and 1** only.
+In binary semaphore, _integer variable_ varies in between **0 and 1** only. Semaphore integers S is initialized with 1. On performing `down()` if we get S = 0, then this operation is considered successful and there's a chance of process to go to critical section. If S = 0 already then it can't perform _down()_ operation anymore because there are only two _0 and 1_. Operation will be considered unscuccessful. Process is blocked and goes to suspended list.
+
+Here's the pseudo code
+```c
+// entry section
+Down(Semaphore S) {
+	if (S value == 1) {
+		S value = 0;
+	}
+	else {
+		block this process;
+		place it in suspended list;
+		sleep();
+	}
+}
+
+// exit section
+up(Semaphore S) {
+	if (suspend list is empty) {
+		S value = 1;
+	}
+	else {
+		select a process from suspend list;
+		wake-up();
+	}
+}
+```
 
 # Solving Producer Consumer Problem by using Semaphore
 
@@ -514,7 +540,7 @@ semaphore db = 1		// binary semaphore variable
 
 // reader's code for entry section
 void Reader(void) {
-	while(true) {
+	while(TRUE) {
 		// semaphore operation
 		down(mutex);	 
 		rc = rc + 1;
@@ -538,7 +564,7 @@ DATABASE	// database, critical section
 
 // writer's code for entry and exit section
 void Writer(void) {
-	while(true) {
+	while(TRUE) {
 		down(db);
 		DATABASE	// critical section
 		up(db);
@@ -567,7 +593,7 @@ So, they think and then after eat(depends on scenerio, but that's the two thing 
 These set of rules are given here as pseudo code
 ```c
 void Philosopher(void) {
-	while(true) {
+	while(TRUE) {
 		Thinking();
 		take-fork(i);	// i is index number for philosopher
 		// consider i as left fork of philosopher
@@ -593,7 +619,7 @@ To avoid this, we will be using _binary semaphore_. We will take an _array_ of s
 So, the above pseudo code will be changed like this
 ```c
 void Philosopher(void) {
-	while(true) {
+	while(TRUE) {
 		Thinking();
 		// entry section
 		wait(take-fork(S[i]));	// down operation semaphore
@@ -735,3 +761,44 @@ A monitor is a construct such as only one process is active at a time within the
 Conditional variables were introduced for additional synchronization mechanism. The conditional variable **allows a process to wait inside the monitor** and allows a waiting process to resume immediately when the other process releases the resources.
 
 The conditional variable can invoke only two operation wait() and signal(). Where if a process P invokes a wait() operation it gets suspended in the monitor till other process **Q invoke signal()** operation i.e. a signal() operation invoked by a process resumes the suspended process.
+
+# Sleeping Barber problem
+
+In this problem, you can think of barber as _processor_ to do processing and customer as _process_. This is a semaphore problem. Now, think of it like this:
+
+If there is no customer(process), barber(processor) goes to sleep. If barber chair is already occupied means if a process is already in critical section and waiting queue is full then customer leaves the shop or process gets in block state. If waiting queue is free(even one chair only) and if a process is already in critical section, newly arrived customer(process) sits to that chair. And at last, if barber is asleep(means processor has nothing to process) and a new customer(process) arrives then it wakes the barber.
+
+In this problem, we can see _mutual exclusion, progress_ which are the basic properties for process synchronization and problem for process synchronization can be solved using semaphores. So, here's the pseudo code
+```c
+#define CHAIR N		// put a value(large) in place of N
+typedef int semaphore;
+semaphore customers = 0;	// no. of waiting customers for service
+semaphore barbers = 0;		// barbers not ready(sleeping)
+semaphore mutex = 1;		// for mutual exclusion
+int waiting = 0;			// customers waiting
+
+void barber(void) {
+	while (TRUE) {
+		down(&customers);	// go to sleep, if no customers
+		down(&mutex);		// get access of waiting
+		waiting = waiting - 1;	// decrement count for waiting customers
+		up(&barbers);		//  a barber is ready now for service
+		up(&mutex);			// release 'waiting'
+		cut_hair();			// gets through critical section
+	}
+}
+
+void customer(void) {
+	down(&mutex);		// enter critical section
+	if (waiting < CHAIR) {		// if no free chair, then else
+		waiting = waiting + 1;	// increment count of waiting process
+		up(&customer);		// wake barber if necessary
+		up(&mutex);			// release access to 'waiting'
+		down(&barbers);		// go to sleep, if no. of barbers is 0	
+		get_haircut();		// processing
+	}
+	else {
+		up(&mutex);			// shop is full, leave
+	}
+}
+```
