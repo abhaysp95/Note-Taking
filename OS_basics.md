@@ -157,7 +157,7 @@ Process Synchronization mainly deals with two types of process:-
 * Co-operative Process
 * Independent Process
 
-## Co-Operative Process - 
+## Co-Operative Process -
 Processes whose execution affects another process. This happens because of sharing.
 They can share _variable, memory(buffer), code, resources(CPU, printers etc.)_.
 
@@ -390,7 +390,7 @@ Down(Semaphore S) {		// S in semaphore integer
 ```
 If a process gets to critical section, it is considered successful, if it goes to block state, then it is considered unscuccessful.
 
-If process has executed entry section and then _CS_, then it has to go through _exit section_, pseudo code is: 
+If process has executed entry section and then _CS_, then it has to go through _exit section_, pseudo code is:
 ```c
 Up(Semaphore S) {
 	S value = S value + 1;
@@ -529,7 +529,7 @@ R - R => no problem
 ```
 
 These are standard problems of **DBMS**.
-We'll use _binary semaphore_ to deal with these three problems. Semaphore because we want to synchronize reader and writer process. 
+We'll use _binary semaphore_ to deal with these three problems. Semaphore because we want to synchronize reader and writer process.
 
 Here is the pseudo code, _reader_ and _writer_ have to execute before getting inside critical section.
 ```c
@@ -542,7 +542,7 @@ semaphore db = 1		// binary semaphore variable
 void Reader(void) {
 	while(TRUE) {
 		// semaphore operation
-		down(mutex);	 
+		down(mutex);
 		rc = rc + 1;
 		if (rc == 1) {
 			down(db);
@@ -794,7 +794,7 @@ void customer(void) {
 		waiting = waiting + 1;	// increment count of waiting process
 		up(&customer);		// wake barber if necessary
 		up(&mutex);			// release access to 'waiting'
-		down(&barbers);		// go to sleep, if no. of barbers is 0	
+		down(&barbers);		// go to sleep, if no. of barbers is 0
 		get_haircut();		// processing
 	}
 	else {
@@ -802,3 +802,45 @@ void customer(void) {
 	}
 }
 ```
+
+# Memory Management
+
+Managing all the memory resources in more efficient manner in a computer system comes under the section of **Memory Management** in OS.
+
+Majority of concentration is on **Primary Memory** since, CPU is directly connected with Registers, Cache and RAM.
+We load the programs from secondary memory to primary for execution. So, they load in RAM. Cache and Registers can also be used but they are much smaller in size than _RAM_. We'll be talking about RAM here.
+
+Let, only one process could load in _RAM_. Now, if probability of process performing _I/O operation_ is **K** then, `cpu-utilization` will be **(1-K)**.
+If two process are loaded then probability will be **K*K** and `cpu-utilization` will be **(1-k*k)**.
+
+So, to increase `degree of multi-programming`, we have to increase size of RAM, so that more processes could be accomodated and thus `cpu-utilization` will be increased.
+
+So, there's concept for `allocation-deallocation` and for the `data-security` like data should not be breached while transfer of data. So, memory management is to bring more and more process to **primary memory**. Also, there will be segmenting(bringing only piece/block) of process to bring inside primary memory.
+
+> Note: Onwards, I'll use memory for primary memory.
+
+## Memory Management Techniques:
+
+We can have more and more process inside memory if we have higher degree of multiprogramming.
+If we have more process in ready state then cpu-utilization will be higher.
+
+Here are the memory management techniques:
+* Contiguous
+	+ Fixed Partition/Static
+	+ Variable Partition/Dynamic
+* Non-contiguous
+	+ Paging
+	+ Multi-level Paging
+	+ Inverted Paging
+	+ Segmentation
+	+ Segmented Paging
+
+## Contiguous Memory Allocation:
+It means that we(OS) tries to give continuous memory addresses to same type processes or to all the blocks of processes like that.
+In it, we have `fixed` type which means OS divides processes to blocks according to some filter(maybe size etc.) to all the process.
+In `dynamic` type, process are divided on run-time dynamically according to the need.
+
+## Non-continuous Memory Allocation:
+In it, let's first block is partition of process P1, second block of memory is of process P2, third block is second partition of P1, forth is fist partition of P4. These blocks can also be blank.
+
+So, overall, if same types of process or the partitions of a process aren't necessarily given continuous memory address in this type of memory allocation.
