@@ -129,3 +129,89 @@ if (age >= 18)
 else
 	document.write("You're NOT an adult <br/>")
 ```
+
+## Loop in Java Script
+
+### for loop
+The for loop is used when you know in advance how many times the script should run.
+**Syntax:**
+```javascript
+for (var = startvalue; var <= endvalue; var = var + increment) {
+	code to be executed
+}
+```
+
+### while loop
+Loop execute a block of code a specified number of times or while a specified condition is true.
+**Syntax:**
+```javascript
+while (var <= endvalue) {
+	code to be executed
+}
+```
+
+### do...while loop
+The do...while loop is a variant of the while loop. This loop will execute the block of code _ONCE_, and then it will repeat the loop as long as the specified condition is true.
+**Syntax:**
+```javascript
+do {
+	code to executed;
+} while (var <= endvalue);
+```
+
+### for...in statement
+The for...in statement loops through the elements of an array or through the properties of an object.
+
+**Syntax:**
+```javascript
+for (variable in object) {
+	code to be executed
+}
+```
+* The code in the body of the for...in loop is executed once for each element/property.
+* The variable argument can be a named variable, an array element, or a property of an object.
+**Example:** Use the for...in statement to loop through an array.
+
+## JavaScript Popup Boxes
+JavaScript has three kind of popup boxes: Alert box, Confirm box and Prompt box.
+
+### Alert Box
+
+An alert box is often used if you want to make sure information comes through to the user.
+
+When an alert box popes up, the user will have to click `OK` to proceed.
+```javascript
+alert("some text");
+```
+
+### Confirm Box
+A confirm box is often used if you want the user to verify or accept something. When a confirm box pops up, the user will have to click either `OK` or `Cancel` to proceed. If the user clicks `OK`, the box returns false.
+**Syntax:**
+```javascript
+confirm("Some text");
+```
+
+### Prompt Box
+A prompt box is often used if you want the user to input a value before entering a page.
+
+When a prompt box pops up, the user will have to click either `OK` or `Cancel` to proceed after entering an input value.
+
+If the user clicks `OK` the box returns the input value. If the user clicks `Cancel` the box returns `null`.
+**Syntax:**
+```javascript
+prompt("sometext", "Default Value");
+```
+
+## JavaScript Events
+The change in the state of an object is known as an **Event**. In html, there are various events which represents that some activity is performed by the user or by the browser. When javascript code is included in HTML, js react over these events and allow the execution. This process of reacting over the events is called **Event Handling**. Thus, js handles the HTML events via **Event Handlers**.
+
+**For example,** when a user clicks over the browser, add js code, which will execute the task to be performed on the event. Some of the HTML events and their event handlers are shown in figure below:
+
+**Mouse Events:**
+![mouse events](images/notes_for_javascript_img/mouse_events_js.png)
+
+**Form Events:**
+![form events](images/notes_for_javascript_img/form_events_js.png)
+
+**Window/Document Events:**
+1[window/document events](images/notes_for_javascript_img/window_events_js.png)
