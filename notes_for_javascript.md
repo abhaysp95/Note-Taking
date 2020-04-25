@@ -85,9 +85,9 @@ This type could not be further converted into more composite form.
 ## Operators in JavaScript
 
 * Airthmetic Operators
-	+ +
-	+ -
-	+ *
+	+ \+
+	+ \-
+	+ \*
 	+ /
 	+ %
 	+ ++
@@ -97,8 +97,8 @@ This type could not be further converted into more composite form.
 	+ === (identical(equal and of same type))
 	+ != (not equal to)
 	+ !== (not identical)
-	+ >
-	+ >=
+	+ \>
+	+ \>=
 	+ <
 * Bitwise Operators
 	+ &
@@ -214,4 +214,114 @@ The change in the state of an object is known as an **Event**. In html, there ar
 ![form events](images/notes_for_javascript_img/form_events_js.png)
 
 **Window/Document Events:**
-1[window/document events](images/notes_for_javascript_img/window_events_js.png)
+![window/document events](images/notes_for_javascript_img/window_events_js.png)
+## Array in JavaScript
+JavaScript array is an object that represents a collection of similar type of elements.
+
+We can create Array in JavaScript by following way:-
+1. By array literal
+2. By creating instance of array directly(using new keyword)
+
+### Creating array in JavaScript by literal
+
+The syntax of creating array using array literal is:
+**Syntax:**
+```javascript
+var arrayname=[value1, value2,...valueN];
+```
+> Note: As you can see, values are contained inside [ ] and separated by comma(,)
+
+## JavaScript Objects
+Objects is anything which occupies `space` and we can identify them with their _attributes_ and _behaviour_.
+
+### JavaScript string object
+The **JavaScript string** is an object that represents a sequence of characters.
+There are two ways to create a string in JavaScript.
+* By string literal
+* By string object(using new keyword)
+
+<b><i>String by literal</i></b>:-
+	<u>The string literal is created using double quotes</u>
+
+**Syntax:**
+```javascript
+var stringname="string value";
+
+<script>
+var str = "This is string literal";
+document.write(str);
+</script>
+```
+
+<u><b>The string literal is created by string object(using new keyword)</b></u>
+**Syntax:**
+
+```javascript
+var stringname=new String("string literal");
+```
+
+### JavaScript String Methods:
+* charAt(index)
+* concat(str)
+* indexOf(str)
+* lastIndexOf(str)
+* toLowerCase()
+* toUpperCase()
+* slice(beginIndex, endIndex)
+
+### JavaScript Date Object
+The **JavaScript Date Object** is an object that represents a Date. The **JavaScript date** object can be used to get year, month or day.
+
+**methods:**
+* getFullYear()
+* getMonth()
+* getDate()
+* getDay()
+* getHours()
+* getMinutes()
+* getSeconds()
+* getMiliSeconds()
+
+### JavaScript Math Object
+It provides several constants and methods to perform mathematical operation. Unlike date object, it doesn't have constructors.
+
+### Document Object Model
+* The **document object** represents the whole html document.
+* When html document is loaded in the browser, it becomes a document object.
+* It is **root element** that represents the html document.
+* It has properties and methods. By the help of document object, we can add dynamic content to our web page.
+	> Note: window.document is same as document.
+* According to **W3C**, _The W3c Document Object Model (DOM) is a plateform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure and style of a document._
+
+### Properties of document object
+![properties of DOM](images/notes_for_javascript_img/properties_of_document_object.png)
+
+### Methods of document object
+* write("string")
+* writeln("string")
+* getElementById()
+* getElementsByName()
+* getElementsByTagName()
+* getElementsByClassName()
+
+* The **document.getElementById()** method returns the element of specified id.
+
+## Function in JavaScript
+
+A function contains code that will be executed by an event or by a call to the function.
+You may call a function from anywhere within a page (or even from other pages if the function is embedded in an external .js file).
+Functions can be defined both in the head and in the body section of a document.
+However, to assure that a function is read/loaded by the browser before it is called, it could be wise to put functions in head section.
+
+**Syntax:**
+```javascript
+function function_name(var1, var3, ..., varX) {
+	some code
+}
+```
+
+## The return statement
+
+The return statement is used to specify the value that is returned from the function.
+So, functions that are going to return a value must use the return statement.
+
