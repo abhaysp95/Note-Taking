@@ -835,12 +835,78 @@ Here are the memory management techniques:
 	+ Segmentation
 	+ Segmented Paging
 
-## Contiguous Memory Allocation:
+### Contiguous Memory Allocation:
 It means that we(OS) tries to give continuous memory addresses to same type processes or to all the blocks of processes like that.
 In it, we have `fixed` type which means OS divides processes to blocks according to some filter(maybe size etc.) to all the process.
 In `dynamic` type, process are divided on run-time dynamically according to the need.
 
-## Non-continuous Memory Allocation:
+### Non-continuous Memory Allocation:
 In it, let's first block is partition of process P1, second block of memory is of process P2, third block is second partition of P1, forth is fist partition of P4. These blocks can also be blank.
 
 So, overall, if same types of process or the partitions of a process aren't necessarily given continuous memory address in this type of memory allocation.
+
+## Fixed Partitioning
+
+Fixed partition, also known as `static partition` have following properties:
+- Number of partitions are fixed.
+- Size of each partition may or may not be same.
+- Contiguous allocation so spanning(splitting process and putting it in different blocks which can be contiguous) is not allowed.
+- We can start putting an incoming process at any block partition, only condition is that size of process should be less than size of block partition.
+- But we try to allocate from _0_ index.
+- There's also a con of this, let's size of smallest block partition is `4mb`.
+So, if a process of `2mb` is loaded on that block partition then rest of the `2mb` of that block is waste.
+- This is called `Internal Fragmentation`. We can't allocate this left memory.
+- In case, if a process comes whose size is less than size of total block process combines but greater than every block process individually. So, that process can't be loaded.
+- So, this is con as limit in process size.
+- Also, we can't put process more than total number of block partitions.
+- So, this is `limitation in degree of multiprogramming`.
+- The same problem will occur even if size of every individual block partition is same or different.
+- When every block partition is filled with process. Now, if new process comes and it's size is less than total combined size of left,
+like size of process is **5mb** and total left memory size from every block partition as of _integer fragmentation_ is **6mb**.
+So, still we can't put that process. This is known as `External Fragmentation`.
+- A pro is, allocation/de-allocation in this method is easy.
+
+## Variable Partitioning
+
+In this we don't partition the memory blocks before. Partitioning is done in runtime according to the need and size of process.
+
+* There's no chance of `internal fragmentation` in this.
+* `Degree of multiprogramming` is increased very much in compared to **fixed partitioning** method.
+* No limitation on `number of process`.
+* No limitation on `process size` also.
+* When process leaves the block, it creates a hole.
+* Let's say, partition[2] process leaves the blocks and frees **4mb** and partition[4] and also frees **4mb**.
+Now let's say a process comes of **8mb** size but we can't allocate this process in memory.
+This is known as `External Fragmentation.`
+* We can resolve external fragmentation with `Compaction.` Means all the allocated process is moved to a single place and free blocks are put together.
+* It's con is that, we have to put running process to _halt_ and it'll take a lot of time.
+* `Allocation & De-allocation` is a bit complex than compared to _fixed partitioning_.
+Because, holes and process are created and allocated dynamically.
+
+## Thrashing
+
+Thrashing is directly linked to `Degree of Multiprogramming`.
+To increase `cpu utilization`, we try to bring maximum process to RAM.
+But since, RAM size is limited, we use concept of `paging.`
+
+In `paging`, we divide processes to multiple _pages_ and these pages are then called into RAM.
+
+So, now we try put single or few pages of every process(as many as possible) into RAM.
+In this way, every process is involved. This has advantage but also disadvantage.
+
+Disadvantage is the whole process isn't present, let's say if CPU demands a page of process which isn't loaded in RAM,
+and this happens for all the process's pages present in RAM then this leads to `Page Fault.`
+
+Whenever, _page fault_ happens, we use `Page Fault Service time` which means we bring the demanded page from hard-disk which takes a lot of time.
+So, OS will get busy in sevice of page fault.
+
+![Thrashing Graph](images/OS_basics_img/thrashing_graph.png)
+
+According to the graph above, at a particular time of `degree of multiprogramming` our `CPU utilization` will be high. Let's say that point is `lambda`.
+
+After that, `thrashing` will start instantly means `Page hit` decreased and `Page Fault` increased.
+At this time, `CPU Utilization` is decreased way too much now.
+
+A fix for this can be to increase the size of **Main Memory**.
+But it isn't possible always.
+Another way is, if we tell `LTS(long term scheduler)` to slow it's rate or to don't take _degree of multiprogramming_ at **threshold** level. In this way, we can prevent `Thrashing`.
