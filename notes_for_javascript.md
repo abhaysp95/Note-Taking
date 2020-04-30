@@ -250,10 +250,36 @@ A prompt box is often used if you want the user to input a value before entering
 
 When a prompt box pops up, the user will have to click either `OK` or `Cancel` to proceed after entering an input value.
 
+This dialog box is displayed using a method called **prompt()** which takes two parameters:
+* a label which you want to display in the text box
+* a default string to display in the text box
+
 If the user clicks `OK` the box returns the input value. If the user clicks `Cancel` the box returns `null`.
+
 **Syntax:**
 ```javascript
 prompt("sometext", "Default Value");
+```
+
+Here's the example for `prompt box`:
+
+```html
+<html>
+    <head>
+	<script>
+	    function get_Choice() {
+		choice = prompt("enter your primary text editor: ", "neovim")
+		document.write("You have entered :<b>" + choice + "</b>")
+	    }
+	</script>
+    </head>
+    <body>
+	<p>Press the button to see result: </p>
+	    <form>
+		<input type="button" value="Click Here" onclick="get_Choice()"/>
+	    </form>
+    </body>
+</html>
 ```
 
 ## JavaScript Events
