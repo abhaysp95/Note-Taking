@@ -178,10 +178,34 @@ JavaScript has three kind of popup boxes: Alert box, Confirm box and Prompt box.
 ### Alert Box
 
 An alert box is often used if you want to make sure information comes through to the user.
+For example, if one input field requires to enter some text but the user does not provide any input,
+then as a part of validation, you can use an alert box to give warning mesage.
 
 When an alert box popes up, the user will have to click `OK` to proceed.
+
+**Syntax:**
 ```javascript
-alert("some text");
+alert("Some text");
+```
+
+Here's an example for `alert box`
+```html
+<html>
+    <head>
+	<script>
+	    function Warn() {
+		alert("This is a message in alert box!")
+		document.write("This is a message")
+	    }
+	</script>
+    </head>
+    <body>
+	<p>Press the button to see result: </p>
+	    <form>
+		<input type="button" value="Click Here" onclick="Warn()"/>
+	    </form>
+    </body>
+</html>
 ```
 
 ### Confirm Box
