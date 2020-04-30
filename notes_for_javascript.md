@@ -209,10 +209,40 @@ Here's an example for `alert box`
 ```
 
 ### Confirm Box
-A confirm box is often used if you want the user to verify or accept something. When a confirm box pops up, the user will have to click either `OK` or `Cancel` to proceed. If the user clicks `OK`, the box returns false.
+A confirm box is often used if you want the user to verify or accept something. When a confirm box pops up, the user will have to click either `OK` or `Cancel` to proceed.
+
+If the user clicks `OK`, the window method **confirm()** will return true. If the user clicks on the `Cancel` button, then **confirm()** returns false.
+
 **Syntax:**
 ```javascript
 confirm("Some text");
+```
+
+Here's the example for `confirm box`:
+```html
+<html>
+    <head>
+	<script>
+	    function get_Confirmation() {
+		choice = confirm("Wish to continue ?")
+		if (choice == true) {
+		    document.write("Proceeding further!")
+		    return true
+		}
+		else {
+		    document.write("Aborting!")
+		    return false
+		}
+	    }
+	</script>
+    </head>
+    <body>
+	<p>Press the button to see result: </p>
+	    <form>
+		<input type="button" value="Click Here" onclick="get_Confirmation()"/>
+	    </form>
+    </body>
+</html>
 ```
 
 ### Prompt Box
