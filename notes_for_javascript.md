@@ -3,6 +3,7 @@
 We can use js code under `script` tag. This `script` tag could be used inside `head` as well as `body` tag.
 
 ## [External JavaScript File](#External-JavaScript-File)
+<!-- You can create anchor for github flavored markdown in above given way -->
 
 * We can create external JavaScript file.
 * Embed it in many html pages.
@@ -11,13 +12,6 @@ We can use js code under `script` tag. This `script` tag could be used inside `h
 > It is recommended to embed all JavaScript files into a single file. It increases the speed of the webpage.
 > See nhtml/practice/js_lecture2 folder for examples.
 
-## Disadvantages of External JavaScript
-* If two js files are dependent on one another, then a failure in one file may affect the execution of the other dependent file.
-* The web browser needs to make an additional http request to get the js code.
-* A tiny to a large change in the js code may cause unexpected results in all its dependent files.
-* We need to check each file that depends on the commonly created external JavaScript file.
-* If it is a few lines of code then better to implement the internal JavaScript code.
-
 ## Advantages of External JavaScript
 * It helps in the reusability of code in more than one HTML file.
 * It allows easy code readability.
@@ -25,6 +19,13 @@ We can use js code under `script` tag. This `script` tag could be used inside `h
 	which further reduces the page loading time.
 * It enables both web designers and coders to work with html and js files parallelly and separately i.e., without facing any code confilictions
 * The length of the code  reduces as only we need to specify the location of the js file.
+
+## Disadvantages of External JavaScript
+* If two js files are dependent on one another, then a failure in one file may affect the execution of the other dependent file.
+* The web browser needs to make an additional http request to get the js code.
+* A tiny to a large change in the js code may cause unexpected results in all its dependent files.
+* We need to check each file that depends on the commonly created external JavaScript file.
+* If it is a few lines of code then better to implement the internal JavaScript code.
 
 ## Variables in Java Script
 
