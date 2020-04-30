@@ -2,7 +2,7 @@
 
 We can use js code under `script` tag. This `script` tag could be used inside `head` as well as `body` tag.
 
-## External JavaScript File
+## [External JavaScript File](#External-JavaScript-File)
 
 * We can create external JavaScript file.
 * Embed it in many html pages.
