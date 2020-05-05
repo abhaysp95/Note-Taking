@@ -14,4 +14,10 @@
 
 ## Related to vim
 
-    - Install `luarocks` for using coc-lua
+- [x] Vim related task
+  - [x] Install `luarocks` for using coc-lua
+
+## Programming Related
+
+- [ ] Python
+	- [ ] tower of hanoi
