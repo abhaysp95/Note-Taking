@@ -3,8 +3,9 @@
 There are four types of positioning css:
 * static
 * relative
-*
-*
+* absolute
+* fixed
+* sticky
 
 ## static
 
