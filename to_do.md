@@ -19,5 +19,9 @@
 
 ## Programming Related
 
-- [ ] Python
-	- [ ] tower of hanoi
+- [x] Python
+	- [x] tower of hanoi
+
+
+## Random
+- [ ] Linux hosting with Cpanel
