@@ -3,6 +3,13 @@ layout: article
 title: Setup LAMP on Linux
 author: Abhay Shanker Pathak
 date: 2020-05-29
+tags:
+	- "Apache2"
+	- "Arch Linux"
+	- "MariaDB"
+	- "MySQL"
+	- "PHP"
+	- "phpMyAdmin"
 ---
 
 This article is specifically based on `Arch base distros`.
@@ -356,6 +363,7 @@ Test in browser **http://localhost/phpmyadmin** and you should be grand by a
 login page from phpmyadmin
 
 
+## Error for passphrase
 If you see an error that says **"The configuration file now needs a secret
 passphrase (blowfish_secret)"** at the bottom of phpMyAdmin dashboard,
 to get rid of this error, edit **/etc/webapps/phpmyadmin/config.inc.php**
@@ -365,6 +373,21 @@ $cfg['blowfish_secret'] = 'Welc0me1'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! 
 ```
 
 Here, **Welc0me1** is secret passphrase and then restart **httpd** service
+
+> Make sure the passphrase is long(like real long) or else it'll give error for passphrase is too short
+
+
+## Error for temp directory
+
+Make the temp directory in `/usr/share/webapps/phpMyAdmin/tmp` or wherever it is given in **phpmyadmin** and give it read write and execute permission(don't change the user).
+
+Then in `/etc/webapps/phpmyadmin/config.inc.php` add a line below
+
+```php
+$cfg['TempDir'] = '/usr/share/webapps/phpMyAdmin/tmp';
+```
+
+Restart the service and reload phpmyadmin, all set.
 
 
 # Error Login as root user in phpMyAdmin
