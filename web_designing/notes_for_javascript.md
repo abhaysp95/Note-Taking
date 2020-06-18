@@ -1,3 +1,9 @@
+---
+content: "basics of javascript"
+tag: "javascript"
+
+---
+
 # JavaScript with HTML
 
 We can use js code under `script` tag. This `script` tag could be used inside `head` as well as `body` tag.

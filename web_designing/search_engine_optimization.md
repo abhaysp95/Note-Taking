@@ -1,3 +1,12 @@
+---
+content: "Search engine Optimization"
+tags:
+	- "web designing"
+	- "html"
+	- "css"
+	- "javascript"
+---
+
 # Search Engine Optimization
 
 ## Introduction
