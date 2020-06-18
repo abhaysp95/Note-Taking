@@ -1,0 +1,13 @@
+. - matches any one character
+* - any number of character, even 0
++ - include any number of char but greater than 0(use \ to escape)
+$ - to get when something end of, end of line
+^ - begining of line
+\S - any non-white space character
+\? - character right before this is optional
+[a-z] - any lowercase letter
+[A-Z] - any uppercase letter
+[A-Za-z] - any letter
+[0-9] - number ranger
+
+\ - escape anything
