@@ -43,3 +43,11 @@ $ 7z e Window10xxxxx.iso source/install.wim  # you can put another name, but it
 # should be of wim type
 $ 7z e install.wim 1/Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"*"/"*"/license.rtf} -ofonts/
 ```
+
+## User Installed package
+
+To know user installed packages that aren't strict dependancy of any other package or group, this doesn't count `base` and `base-devel`
+```sh
+$ comm -23 <(pacman -Qqett | sort) <(pacman -Qqg base -g base-devel | sort | uniq) > uninstall_packages.txt
+```
+If you want to include _explicitly installed packages_ that are also dependancies of some other package, you can use `Qqe` instead `Qqett`.
