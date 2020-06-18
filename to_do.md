@@ -35,7 +35,7 @@
 
 - [ ] Python for Everybody Specialization
 	- [ ] 3. Using Python to acess web data
-		Content: setting text-editor, Regex, Networks and sockets, programs that surf the web
+		setting text-editor, Regex, Networks and sockets, programs that surf the web
 	- [ ] 4. Using databases with python
 		OOP, Basic structured Query language, Data Models and Relational SQL, Many-to-Many relationships in SQL, Databases and Visualization
 	- [ ] 5. Capstone: Retrieving, Processing and Visualizing Data with python, Building Search Engine, Exploring Data Sources, Spidering and Modeling Email Data, Accessing New Data Sources, Visualizing Email Data, Visualizing new Data Sources
