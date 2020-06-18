@@ -53,9 +53,9 @@
 		Manipulating images, interacting with web services, Automatic output generation, putting it all together
 
 - [ ] Linux Security and Hardening, The Practical Security Guide
-	- [ ] General Security
+	- [x] General Security
 		Is Linux secure, What makes Linux Secure, Security Guidelines and Principles
-	- [ ] Physical Security
+	- [x] Physical Security
 		Physical Security Concept, Single User mode Security, Single User Mode and Blank Passwords, Securing the Boot loader, Disk Encryption, Encrypting a New Device(3 parts), Encrypting and existing device, disabling control alt delete
 	- [ ] Account Security
 		Intro to PAM, PAM configuration example, Password Security, Account Security Demo, Controlling Account Access, Security by account type, Account Security Demo
