@@ -51,3 +51,11 @@ To know user installed packages that aren't strict dependancy of any other packa
 $ comm -23 <(pacman -Qqett | sort) <(pacman -Qqg base -g base-devel | sort | uniq) > uninstall_packages.txt
 ```
 If you want to include _explicitly installed packages_ that are also dependancies of some other package, you can use `Qqe` instead `Qqett`.
+
+## get pid of the process which runs it
+
+```sh
+$ echo "$$"
+```
+
+This will give the pid of the process which ran it
