@@ -34,6 +34,8 @@
 
 ## Random
 - [ ] Linux hosting with Cpanel
+- [ ] Check out *Pereto Principal*
+- [ ] Check out *Bit Rot*
 
 ## Online Courses:
 
