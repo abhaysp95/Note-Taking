@@ -94,3 +94,12 @@ then we can say entity implements the Polymorphism.
 **Inheritance** - This is the concept of reusability.
 
 **Message Passing** - This is concept of runtime communication of the objects.
+
+
+## Directory as Module
+
+If you have a module which is distributed in several files inside a directory.
+Then you would likely be like to call the directory as module in other programs.
+So, you have to tell the python interpreter to think of this directory as module.
+All you have to do is `touch __init.py__` in that directory. You don't have to put
+anything there if it's not needed
