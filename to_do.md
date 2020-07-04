@@ -27,6 +27,10 @@
 
 - [ ] Read about relation between operation performing between CPU and memory
 
+## Networking
+
+- [x] Find out relation between IP address and subnet mask in detail
+
 
 ## Random
 - [ ] Linux hosting with Cpanel
