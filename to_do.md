@@ -21,6 +21,7 @@
 
 - [x] Python
 	- [x] tower of hanoi
+	- [ ] an rysnc script with multiprocessing
 
 
 ## Hacking_TAE
