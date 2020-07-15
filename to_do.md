@@ -24,6 +24,10 @@
 	- [ ] an rysnc script with multiprocessing
 
 
+- [ ] Shell
+	- [ ] script to merge audio and video
+
+
 ## Hacking_TAE
 
 - [ ] Read about relation between operation performing between CPU and memory

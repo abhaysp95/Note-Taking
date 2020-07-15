@@ -99,3 +99,14 @@ here's the table
 | 29     |	POLL   |
 | 30     |	PWR    |
 | 31     |	SYS    |
+
+## merge video and audio
+
+A basic approach to merge audio and video with `ffmpeg`
+
+```sh
+$ ffmpeg -i <video_file> -i <audio_file> -c:v copy -c:a aac <outfile_file>
+```
+
+You could give `mkv` extension to output file or other if you know what
+you're doing
