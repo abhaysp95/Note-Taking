@@ -49,6 +49,7 @@
 - [ ] tokei, file type percent
 - [ ] write about exa and find other examples
 - [x] about p7zip
+- [ ] global bookmarks
 
 ## Online Courses:
 
