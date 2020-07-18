@@ -110,3 +110,12 @@ $ ffmpeg -i <video_file> -i <audio_file> -c:v copy -c:a aac <outfile_file>
 
 You could give `mkv` extension to output file or other if you know what
 you're doing
+
+## Convert a video to gif with ffmpeg
+
+```sh
+$ ffmpeg -ss 30 -t 3 -i input.mp4 -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
+```
+
+Although, not all the options are necessary.
+Check out this [stack exchange](https://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality) for more details
