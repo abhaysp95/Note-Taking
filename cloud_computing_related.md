@@ -21,6 +21,15 @@ Software that is installed in the same building as your buisness.
 
 Here's a visual breakdown from [Hosting Advice](https://www.hostingadvice.com/how-to/iaas-vs-paas-vs-saas/)
 
+<style>
+#you {
+	color: #ff0000;
+}
+#client {
+	color: #00ff00;
+}
+</style>
+
 <table>
 	<tr>
 		<th>
@@ -56,12 +65,12 @@ Here's a visual breakdown from [Hosting Advice](https://www.hostingadvice.com/ho
 			Applications
 		</td>
 		<td>
-			You Manage
 		</td>
 		<td>
 			Applications
 		</td>
-		<td>
+		<td id="you">
+			You Manage
 		</td>
 		<td>
 			Applications
@@ -99,7 +108,7 @@ Here's a visual breakdown from [Hosting Advice](https://www.hostingadvice.com/ho
 		<td>
 			Runtime
 		</td>
-		<td>
+		<td id="you">
 			You manage
 		</td>
 		<td>
@@ -139,7 +148,7 @@ Here's a visual breakdown from [Hosting Advice](https://www.hostingadvice.com/ho
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td id="you">
 			You Manage
 		</td>
 		<td>
@@ -155,7 +164,7 @@ Here's a visual breakdown from [Hosting Advice](https://www.hostingadvice.com/ho
 		<td>
 			O/S
 		</td>
-		<td>
+		<td id="client">
 			Client Manages
 		</td>
 		<td>
@@ -173,7 +182,7 @@ Here's a visual breakdown from [Hosting Advice](https://www.hostingadvice.com/ho
 		<td>
 			Virtualization
 		</td>
-		<td>
+		<td id="client">
 			Client Manages
 		</td>
 		<td>
@@ -191,7 +200,7 @@ Here's a visual breakdown from [Hosting Advice](https://www.hostingadvice.com/ho
 		<td>
 			Servers
 		</td>
-		<td>
+		<td id="client">
 			Client Manage
 		</td>
 		<td>
