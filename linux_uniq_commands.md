@@ -119,3 +119,14 @@ $ ffmpeg -ss 30 -t 3 -i input.mp4 -vf "fps=10,scale=320:-1:flags=lanczos,split[s
 
 Although, not all the options are necessary.
 Check out this [stack exchange](https://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality) for more details
+
+## Image in grayscale with balanced RGB
+
+See, the magick of imagemagick:
+
+```sh
+convert color.png \
+\( -clone 0 -channel RG -separate +channel -evaluate-sequence mean \) \
+\( -clone 0 -channel GB -separate +channel -evaluate-sequence mean \) \
+-delete 0 -evaluate-sequence mean color2gray1.png
+```
