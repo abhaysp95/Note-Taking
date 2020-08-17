@@ -1,0 +1,11 @@
+linux-kernel-decompression:
+  - zImage:
+    - this is the compressed version of the linux kernel image that is self extracting
+    - https://unix.stackexchange.com/questions/295131/what-is-zimage-rootfs#:~:text=zImage%20is%20compressed%20version%20of,cases%20everything%2C%20including%20home%20folder.
+  - ATAGs:
+    - list containing information about certain aspects of hardware created by bootloader before loading of kernel
+    - https://jsandler18.github.io/extra/atags.html
+  - The_boot_loader_then_jumps_to_the_kernel_in_supervisor_mode,_with_all_interrupts,_MMUs_and_caches_disabled:
+      - ok, understood that interrrupts are disabled(what are the interrrupts at the boot time?), but why is MMUs and caching disabled?
+  - Overlapping:
+    - Do this overlapping of uncompressed kernel over compressed kernel for some portion happens everytime(not clear with article)?
