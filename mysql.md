@@ -45,11 +45,28 @@ To disable service:
 $ sudo systemctl disable mysqld.service
 ```
 
+### Get the port number
+
+To know at actually which port you mysql service is running, enter following command:
+```sh
+$ sudo netstat -tnlp | grep -i mysql | awk '{print $4}' | cut -c 4-
+3306
+```
+
 ## using mysql through terminal
 
 This is tested on linux
 
 > Note: queries for mysql are case-insensitive for most cases
+
+## setup for the first time
+
+You can enter following command for first time setup:
+
+```sh
+$ sudo mysql_secure_installation
+```
+
 
 ## Current User list
 
@@ -86,7 +103,12 @@ You need to login as root into mysql.
 A basic query syntax could be like this:
 
 ```sql
-> GRANT permission ON database.table To 'username'@'localhost'
+> GRANT [privilege1, privilege2] ON [database].[table] TO '[user]'@'localhost';
+```
+for example:
+
+```SQL
+> GRANT ALL PRIVILEGES ON test.* TO 'user'@'localhost'
 ```
 
 This will give the specified permission to the specified user on the specified database table
@@ -183,3 +205,52 @@ A short list of permission is given here:
 		</td>
 	</tr>
 </table>
+
+## List all mysql databases
+
+Enter with user you want to show database of or enter with root access and enter following query:
+
+```SQL
+> SHOW DATABASES;
+```
+
+
+## Creating a Database
+
+You need to create a database before you can create the table. So, to create database, insert query like this with `root` user for specified user(or root).
+
+But if you have created a new user, you have to grant the required permission first according to the need
+
+```SQL
+> GRANT ALL PRIVILEGES ON practice.* TO 'username'@'localhost'
+```
+
+This will give all the permission to `username` for `practice` database.
+
+Now, if you want login back with that new user.
+
+Now, time to create the database,
+
+After logging back with the 'username', enter following query:
+
+```SQL
+> CREATE DATABASE practice;
+```
+
+This will create the database with `practice`
+
+To use this database, enter:
+
+```SQL
+> USE practice;
+```
+
+This will change the prompt from something like this `MariaDB [(none)]>` to something like this `MariaDB [practice]>`.
+
+## Creation of table
+
+Now, its time to create the table, basic mysql syntax for creating table could look like this:
+
+```SQL
+> CREATE TABLE [table_name] (column1_name data_type(length) [NOT NULL] [DEFAULT value] [AUTO_INCREMENT], column2_name data_type(length) [NOT NULL] [DEFAULT value] [AUTO_INCREMENT] ... );
+```
