@@ -254,3 +254,38 @@ Now, its time to create the table, basic mysql syntax for creating table could l
 ```SQL
 > CREATE TABLE [table_name] (column1_name data_type(length) [NOT NULL] [DEFAULT value] [AUTO_INCREMENT], column2_name data_type(length) [NOT NULL] [DEFAULT value] [AUTO_INCREMENT] ... );
 ```
+
+For example, you can create `table` with something like this:
+
+```SQL
+CREATE TABLE Person ( ID INT NOT NULL AUTO_INCREMENT, First_Name VARCHAR(32) NOT NULL, Last_Name VARCHAR(32) DEFAULT 'Nothing', Email VARCHAR(32) DEFAULT 'Not-Provided', Date_Added DATE, PRIMARY KEY ( ID ) );
+```
+
+This will create the table named `Person`.
+
+Now, enter some queries like this:
+
+```SQL
+> INSERT INTO Person ( First_Name, Last_Name, Date_Added ) VALUES ('Raven', 'Claw', '2020-08-16');
+```
+
+And you created a row in the table
+
+To view the table you can query:
+
+```SQL
+MariaDB [practice]> SELECT * FROM Person;
+
+
++----+------------+-----------+-----------------------+------------+
+| ID | First_Name | Last_Name | Email                 | Date_Added |
++----+------------+-----------+-----------------------+------------+
+|  1 | Richard    | Williams  | Richard@Williams.xyz  | 2020-08-18 |
+|  2 | Selena     | Smith     | selena123smith@gb.com | NULL       |
+|  3 | Selena     | Nothing   | selena123smith@gb.com | NULL       |
+|  4 | Raven      | Claw      | Not-Provided          | 2020-08-16 |
++----+------------+-----------+-----------------------+------------+
+4 rows in set (0.001 sec)
+```
+
+There you go, you have created a table named `Person` inside `practice` database
