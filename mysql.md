@@ -1,5 +1,52 @@
 # Using mysql(mariadb) through commandline
 
+## Edit configuration file of mysql
+
+mysql runs as a system service, you can find out its configuration file at `/etc/mysql/my.cnf` or `/etc/my.cnf` depends on distribution.
+
+## Check and enable/disable mysql service
+
+This will apply on systemd systems:
+
+```sh
+$ sudo systemctl status mysqld.service
+
+● mariadb.service - MariaDB 10.4.13 database server
+	 Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; vendor preset: disabled)
+	 Active: active (running) since Mon 2020-08-17 11:29:03 IST; 1 day 7h ago
+	   Docs: man:mysqld(8)
+			 https://mariadb.com/kb/en/library/systemd/
+	Process: 124160 ExecStartPre=/bin/sh -c systemctl unset-environment _WSREP_START_POSITION (code=exited, status=0/SUCCESS)
+	Process: 124161 ExecStartPre=/bin/sh -c [ ! -e /usr/bin/galera_recovery ] && VAR= ||   VAR=`cd /usr/bin/..; /usr/bin/galera_recover>
+	Process: 124266 ExecStartPost=/bin/sh -c systemctl unset-environment _WSREP_START_POSITION (code=exited, status=0/SUCCESS)
+   Main PID: 124172 (mysqld)
+	 Status: "Taking your SQL requests now..."
+	  Tasks: 30 (limit: 4054)
+	 Memory: 65.7M
+	 CGroup: /system.slice/mariadb.service
+			 └─124172 /usr/bin/mysqld
+
+Aug 17 11:29:03 server mysqld[124172]: 2020-08-17 11:29:03 0 [Note] Server socket created on IP: '::'.
+Aug 17 11:29:03 server mysqld[124172]: 2020-08-17 11:29:03 0 [Note] Reading of all Master_info entries succeeded
+```
+
+To enable and start service:
+
+```sh
+$ sudo systemctl enable mysqld.service
+Created symlink ......
+
+$ sudo systemctl start mysqld.service
+```
+
+To disable service:
+
+```sh
+$ sudo systemctl disable mysqld.service
+```
+
+## using mysql through terminal
+
 This is tested on linux
 
 > Note: queries for mysql are case-insensitive for most cases
