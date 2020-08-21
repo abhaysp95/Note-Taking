@@ -214,6 +214,34 @@ Enter with user you want to show database of or enter with root access and enter
 > SHOW DATABASES;
 ```
 
+If you are using some database and your sql prompt isn't showing database name, you can use following query to show database name you're currently working on:
+
+```SQL
+> SELECT DATABASE();
+```
+
+## List all tables
+
+To show all the from a database:
+
+```SQL
+> SHOW TABLES FROM "database name";
+```
+
+You don't need to provide the database name if you want to list the tables of the database you are using right now
+
+
+## List all the columns of table
+
+Use the following query/ies:
+
+```SQL
+> SHOW COLUMNS FROM "table" FROM "database";
+-- or
+> SHOW COLUMNS FROM "database"."table";
+-- or
+> SHOW COLUMNS FROM "table";
+```
 
 ## Creating a Database
 
