@@ -130,3 +130,15 @@ convert color.png \
 \( -clone 0 -channel GB -separate +channel -evaluate-sequence mean \) \
 -delete 0 -evaluate-sequence mean color2gray1.png
 ```
+
+## get all the installed n/vim colorschemes in a file
+
+```sh
+$ nvim -esc "put=getcompletion('', 'color')|put=globpath('~/.config/nvim/plugged/*/colors', '*.vim', 0, 1)|execute('%s/.*\/\([^/]*\).vim*$/\1/')" /tmp/vim-colorscheme -c wq
+```
+
+## basic guide for sed command
+
+Checkout this awesome article on gnu sed:
+
+[sed](https://www.tutorialspoint.com/unix/unix-regular-expressions.htm)
