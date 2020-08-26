@@ -9,3 +9,7 @@ linux-kernel-decompression:
       - ok, understood that interrrupts are disabled(what are the interrrupts at the boot time?), but why is MMUs and caching disabled?
   - Overlapping:
     - Do this overlapping of uncompressed kernel over compressed kernel for some portion happens everytime(not clear with article)?
+
+sync-forked-repo:
+  - link:
+      https://levelup.gitconnected.com/how-to-sync-forked-repositories-using-git-or-github-2933e497fa16
