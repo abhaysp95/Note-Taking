@@ -151,35 +151,38 @@ _Eg._: Exceptions under _Error_ and _RuntimeException_ classes are unchecked exc
 
 A catch clause specifies an exception type and a parameter. The parameter receives the exception object. Since all exceptions are subclasses of Throwable, all exceptions support the methods defined by Throwable. Several commonly used ones are shown here:
 
-<tr>
-	<th>Method</th>
-	<th>Description</th>
-</tr>
-<tr>
-	<td>Throwable fillInStackTrace()</td>
-	<td>Returns a <b>Throwable</b> object that contains a completed stack trace. This object can be retrhown.</td>
-</tr>
-<tr>
-	<td>String getLocalizedMessage()</td>
-	<td>Returns a localized description of the exception</td>
-</tr>
-<tr>
-	<td>String getMessage()</td>
-	<td>Returns the description of the exception</td>
-</tr>
-<tr>
-	<td>void printStackTrace()</td>
-	<td>Display the stack trace</td>
-</tr>
-<tr>
-	<td>void printStackTrace(PrintStream <i>stream</i>)</td>
-	<td>Sends the stack trace to the specified stream</td>
-</tr>
-<tr>
-	<td>void printStackTrace(PrintWriter <i>stream</i>)</td>
-	<td>Sends the stack trace to the specified stream</td>
-</tr>
-<tr>
-	<td>String toString()</td>
-	<td>Returns a <b>String</b> object containing a complete description of the exception. This method is called by <b>println()</b> when outputting a <b>Throwable</b> object.</td>
-</tr>
+
+<table>
+	<tr>
+		<th>Method</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Throwable fillInStackTrace()</td>
+		<td>Returns a <b>Throwable</b> object that contains a completed stack trace. This object can be retrhown.</td>
+	</tr>
+	<tr>
+		<td>String getLocalizedMessage()</td>
+		<td>Returns a localized description of the exception</td>
+	</tr>
+	<tr>
+		<td>String getMessage()</td>
+		<td>Returns the description of the exception</td>
+	</tr>
+	<tr>
+		<td>void printStackTrace()</td>
+		<td>Display the stack trace</td>
+	</tr>
+	<tr>
+		<td>void printStackTrace(PrintStream <i>stream</i>)</td>
+		<td>Sends the stack trace to the specified stream</td>
+	</tr>
+	<tr>
+		<td>void printStackTrace(PrintWriter <i>stream</i>)</td>
+		<td>Sends the stack trace to the specified stream</td>
+	</tr>
+	<tr>
+		<td>String toString()</td>
+		<td>Returns a <b>String</b> object containing a complete description of the exception. This method is called by <b>println()</b> when outputting a <b>Throwable</b> object.</td>
+	</tr>
+</table>
