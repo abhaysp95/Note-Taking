@@ -148,8 +148,9 @@ _Eg._: Exceptions under _Error_ and _RuntimeException_ classes are unchecked exc
 
 See the images, which provides detail about _checked_ and _unchecked_ exception defined by `java.lang`
 
-![Unchecked-Exception](./images/java_notes/unchecked_exceptions.png)
-![Checked-Exception](./images/java_notes/checked_exceptions.png)
+![Unchecked-Exception](./images/java_notes/unchecked_exceptions.png "Unchecked Exception Details")
+
+![Checked-Exception](./images/java_notes/checked_exceptions.png "Checked Exception Details")
 
 
 ## A closer look at Throwable
