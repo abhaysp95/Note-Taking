@@ -192,3 +192,45 @@ A catch clause specifies an exception type and a parameter. The parameter receiv
 		<td>Returns a <b>String</b> object containing a complete description of the exception. This method is called by <b>println()</b> when outputting a <b>Throwable</b> object.</td>
 	</tr>
 </table>
+
+
+
+---
+
+Look for:
+
+* Chained Exceptions
+
+
+## Java's I/O
+
+Java programs perform I/O through streams. Mainly two types of streams are used in java:
+* Byte streams
+* Character streams
+
+
+### Byte Stream and Character Stream
+
+Byte stream provide a conveninet means for handling input and output of bytes. They are used, for example, when reading or writing binary data. They are especially helpful for working with files.
+
+Character streams are designed for handling the input and output of characters. They use Unicode and, therefore, can be internationalized. Also, in some cases, char stream is efficient than byte streams.
+
+One other point: At the lowest level, all I/O is still byte-oriented. The character-based streams simply provide a convenient and efficient means of handling characters.
+
+
+### The Byte stream Classes
+
+At the top of there are two abstract classes: **InputStream** and **OutputStream**. _InputStream_ defines the characterstics common to byte input streams and _OutputStream_ describes the behaviour of output stream.
+
+Byte Stream classes from **java.io** are shown in the table below:
+
+![byte_stream](images/java_notes/byte_stream_classes.png)
+
+
+### The Character Stream Classes
+
+Character streams are defined by using two class hierarchies topped by these two abstract classes: **Reader** and **Writer**. Concrete classes derived from _Reader_ and _Writer_ operate on Unicode character stream. In general character-based classses parallel to byte-based classes.
+
+Character Stream classes from **java.io** are shown in the table below:
+
+![char_stream](images/java_notes/char_stream_classes.png)
