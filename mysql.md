@@ -294,8 +294,10 @@ This will create the table named `Person`.
 Now, enter some queries like this:
 
 ```SQL
-> INSERT INTO Person ( First_Name, Last_Name, Date_Added ) VALUES ('Raven', 'Claw', '2020-08-16');
+> INSERT INTO Person ( First_Name, Last_Name, Date_Added ) VALUES ( 'Raven', 'Claw', '2020-08-16' );
 ```
+
+You can also insert values only for few selected attributes of the table, rest of the attributes are bydefault `NULL`. Syntax is same just as above
 
 And you created a row in the table
 
@@ -317,3 +319,56 @@ MariaDB [practice]> SELECT * FROM Person;
 ```
 
 There you go, you have created a table named `Person` inside `practice` database
+
+
+## Removing table
+
+You can delete a table with ddl `DROP`:
+```sql
+> DROP TABLE <name_of_table>;
+```
+
+## Alter table
+
+To add a new attribute to existing table:
+```sql
+> alter table <table_name> add <attr_name> <attr_type>(size);
+```
+
+## show table attributes(types)
+
+```sql
+> describe <table_name>;
+```
+
+There's another way:
+
+<!-- write another way here -->
+
+## Update the attribute's domain
+
+You can use `UPDATE` keyword for this:
+
+```sql
+> update <table_name> set <attr_name>='<domain_value>'
+```
+
+If you'll execute this then it'll update the given attribute on every tuple. To do this with selected tuple, you can do like this
+
+```sql
+> update <table_name> set <attr_name>='<domain_value>' where <attr_name>='value';
+```
+
+## Deletion
+
+```sql
+> delete from <table_name> where <condition>;
+```
+
+## Truncation
+
+To delete every tuple of table,
+
+```sql
+> truncate table <table_name>;
+```
