@@ -234,3 +234,10 @@ Character streams are defined by using two class hierarchies topped by these two
 Character Stream classes from **java.io** are shown in the table below:
 
 ![char_stream](images/java_notes/char_stream_classes.png)
+
+
+### The Predefined Streams
+
+All java programs automatically import `java.lang` package. This package defines a class called **System**, which encapsulates several aspects of the runtime-environment. Among other things, there are three predefined stream variables called **in**, **out** and **err**. These fields are declared as **public**, **final and static** within **System**. This means that they can be used by any other part of your program and without reference to a specific **System** object.
+
+**System.in** is an object of **InputStream**; **System.out** and **System.err** are objects of type **PrintStream**. These are byte streams, even though they are typically used to read and write characters from and to the console. The reason they are byte and not character stream is that thee predefined streams were part of the original specification for Java, which didn't include the character streams.
