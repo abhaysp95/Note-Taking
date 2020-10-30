@@ -63,3 +63,15 @@ Declaration can be used to declare on or more variables methods or class which c
 ```jsp
 <%! int a = 0; %>
 ```
+
+### Expression:
+
+```jsp
+<%! int a = 2; %>
+```
+
+### Scriplets:
+
+```jsp
+<%= a%> <%--< will print a >--%>
+```
