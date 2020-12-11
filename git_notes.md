@@ -84,9 +84,9 @@ as for second question:
 
 ```
 +------------------------------------------------+
-|    			((2 ^ 160) - 1)!				 |
+|               ((2 ^ 160) - 1)!                 |
 |    ----------------------------------------    |
-|    (2 ^ 160 - N)! * (2 ^ (160 * ( N - 1 )))	 |
+|    (2 ^ 160 - N)! * (2 ^ (160 * ( N - 1 )))    |
 +------------------------------------------------+
 
 where, 'N' is number of files
@@ -101,9 +101,9 @@ uses 160bit checksum
 For eg., for a dice(6 faces):
 
 +------------------------------+
-|	  		5!				   |
+|             5!               |
 |   ------------------------   |
-|	(6 - N)! * (6 ^ (N - 1))   |
+|    (6 - N)! * (6 ^ (N - 1))  |
 +------------------------------+
 
 and even probability of getting different numbers on all 6 dices is not exact 1
@@ -166,7 +166,7 @@ Git objects consists of 4 fields: Object Type, Object Length, Delimiter and Cont
 
 ```
 content     +     Object     +     Object     =     Hash
-  |                type			   length
+  |                type            length
   |                 |                 |
   |                 |             +---+
   |                 |             |
