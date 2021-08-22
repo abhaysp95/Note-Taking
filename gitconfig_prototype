@@ -1,0 +1,18 @@
+[user]
+	name = <user-name>
+	email = <user-email>
+	password = <user-password>
+[credential]
+	helper = store
+[http]
+	sslBackend = <certificate-varient>
+[init]
+	defaultBranch = master
+[sendemail]
+	smtpencryption = <varient>
+	smtpserver = <server-name>
+	smtpuser = <email>
+	smtpserverport = <port>
+	smtppass = <pass>
+
+# vim: filetype=gitconfig
