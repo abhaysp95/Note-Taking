@@ -249,6 +249,8 @@ To install PHP in arch, run:
 $ sudo pacman -S php php-apache
 ```
 
+```Note: install php7 and php7-apache. Also, new folder will be created for php7 in '/etc/php7'. For doing configuration, if you installed php7, do it from '/etc/php7/php.ini' ```
+
 After installation, we need to configure Apache PHP module:
 
 ```sh
