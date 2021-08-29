@@ -404,6 +404,13 @@ for more detail
 
 Do following:
 
+* To create database(most likely, you're gonna login as root) and then
+
+```
+mysql> create database <db_name>;
+mysql> show databases;
+```
+
 * Create user(this is only for localhost)
 ```
 mysql> CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password';
@@ -412,7 +419,7 @@ mysql> CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password';
 * Give privileges(providing all privileges to all databases)
 
 ```
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'database_user'@'localhost';
+mysql> GRANT ALL PRIVILEGES ON <database_name>.* TO 'database_user'@'localhost';
 ```
 
 * Flush privileges(makes changes appear)
@@ -421,4 +428,5 @@ mysql> GRANT ALL PRIVILEGES ON *.* TO 'database_user'@'localhost';
 mysql> FLUSH PRIVILEGES
 mysql> exit
 ```
+
 All set, now you can login with your newly created login and password
