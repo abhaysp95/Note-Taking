@@ -2,7 +2,7 @@
 
 As mentioned in it's official website, `Open Journal Systems (OJS) is an open source software application for managing and publishing scholarly journals.`
 
-You can checkout official webiste [here](https://pkp.sfu.ca/ojs/) for more info or visit its github repo [here](https://github.com/pkp/ojs).
+You can checkout official website [here](https://pkp.sfu.ca/ojs/) for more info or visit its github repo [here](https://github.com/pkp/ojs).
 
 ## Setup LAMP
 
@@ -57,7 +57,7 @@ Next, open you browser and go to `localhost`. You'll see the `ojs on-screen inst
 
 If you want to increase the size limit of the capacity of the files you wanna upload. Do following:
 
-Open `/etc/php7/php.ini` in your preffered editor(`vim/nano` are most likely gonna be found in most system already. I prefer _vim_). Find the line under `File Uploads` section which looks like this:
+Open `/etc/php7/php.ini` in your preferred editor(`vim/nano` are most likely gonna be found in most system already. I prefer _vim_). Find the line under `File Uploads` section which looks like this:
 ```
 upload_max_filesize = 2M
 ```
@@ -67,7 +67,7 @@ Change the capacity to your desire(like _1G_).
 Save the file and restart the server(command told above) and refresh the page in browser(you'll notice the change there too).
 
 
-Next, for setting up database. You need to pay attention that options provided doesn't have `[]` surrouded. For this, you need to have appropriate `php driver` installed for those databases.
+Next, for setting up database. You need to pay attention that options provided doesn't have `[]` surrounded. For this, you need to have appropriate `php driver` installed for those databases.
 You can install most of the option's driver from your distros official repositories(like php-sqlite, php-mongodb etc.). In my case, I'm going with `mariadb`(and I hope you already have done the setup as told above in first paragraph).
 
 For this setup(since I'm currently in Arch linux), there's not `php7-msql` or like that any other module for mariadb(mysql). Instead, you need to enable it as extension as told [here](https://wiki.archlinux.org/title/PHP#MySQL/MariaDB). Do it like this:
