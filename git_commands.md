@@ -3,7 +3,7 @@
 ## Undoing Changes
 
 | command                                          | statement                                                             |
-| :----------:                                     | :--------:                                                            |
+| :----------:                                     | :--------                                                            |
 | git checkout <commit-hash>                       | detach head                                                           |
 | git checkout HEAD~<no.>                          | detach head (HEAD reference)                                          |
 | git checkout -                                   | move head back to previous position                                   |
