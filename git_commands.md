@@ -47,4 +47,20 @@
     <td>git reset --hard &lt;commit-hash|HEAD~&lt;no.&gt;&gt;</td>
     <td>get reid of all the commit upto provided hash (changes are also removed and working directory is same to provided hash)</td>
   </tr>
+  <tr>
+    <td>git revert &lt;commit-hash|HEAD~&lt;no.&gt;&gt;</td>
+    <td>undo the change from given commit by creating a new commit whose parent is the commit hash you want to revert from</td>
+  </tr>
+  <tr>
+    <td>git revert --continue</td>
+    <td>continue the revert in case of merge conflict (after fix)</td>
+  </tr>
+  <tr>
+    <td>git revert --skip</td>
+    <td>skip the current commit and continue for revert</td>
+  </tr>
+  <tr>
+    <td>git revert --abort</td>
+    <td>abort the revert process</td>
+  </tr>
 </table>
