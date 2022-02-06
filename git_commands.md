@@ -4,8 +4,8 @@
 
 <table>
   <tr>
-    <td>command</td>
-    <td>statement</td>
+    <th>command</th>
+    <th>statement</th>
   </tr>
   <tr>
     <td>git checkout &lt;commit-hash&gt;</td>
