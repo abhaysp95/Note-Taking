@@ -39,4 +39,12 @@
     <td>git restore --staged &lt;file&gt;</td>
     <td>unstage file/revert back staged changes (not commited yet, changes will not be deleted)</td>
   </tr>
+  <tr>
+    <td>git reset &lt;commit-hash|HEAD~&lt;no.&gt;&gt;</td>
+    <td>get rid of all the commit upto provided hash (work done is still left in working directory)</td>
+  </tr>
+  <tr>
+    <td>git reset --hard &lt;commit-hash|HEAD~&lt;no.&gt;&gt;</td>
+    <td>get reid of all the commit upto provided hash (changes are also removed and working directory is same to provided hash)</td>
+  </tr>
 </table>
