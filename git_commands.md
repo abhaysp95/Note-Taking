@@ -63,4 +63,20 @@
     <td>git revert --abort</td>
     <td>abort the revert process</td>
   </tr>
+  <tr>
+    <td>git lfs install</td>
+    <td>setup the git lfs (one time process)</td>
+  </tr>
+  <tr>
+    <td>git lfs track **/*.png</td>
+    <td>setup the tracking of large files (creates .gitattributes file)</td>
+  </tr>
+  <tr>
+    <td>git lfs uninstall</td>
+    <td>remote the git lfs setup</td>
+  </tr>
+  <tr>
+    <td>git lfs untrack **/*.png</td>
+    <td>untrackes the mentioned files as arguments</td>
+  </tr>
 </table>
