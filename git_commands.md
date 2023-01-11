@@ -8,8 +8,11 @@
     <th>statement</th>
   </tr>
   <tr>
-    <td>git checkout &lt;commit-hash&gt;</td>
-    <td>detach head</td>
+    <td>git init</td>
+    <td>initialize the repository</td>
+  <tr>
+    <td>git add myfile.png</td>
+    <td>stage the file (supports multiple arguments and globbing)</td>
   </tr>
   <tr>
     <td>git checkout HEAD~&lt;no.&gt;</td>
