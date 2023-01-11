@@ -1,6 +1,6 @@
 # table
 
-## Undoing Changes
+## Basics
 
 <table>
   <tr>
@@ -27,6 +27,11 @@
     <td>git checkout -- &lt;file&gt;</td>
     <td>discard change of a file (prev position)</td>
   </tr>
+</table>
+
+## Undoing Changes
+
+<table>
   <tr>
     <td>git restore &lt;file&gt;</td>
     <td>unmodify file/restore back to HEAD (non-undoable uncommited changes)</td>
@@ -63,6 +68,11 @@
     <td>git revert --abort</td>
     <td>abort the revert process</td>
   </tr>
+</table>
+
+## git lfs commands
+
+<table>
   <tr>
     <td>git lfs install</td>
     <td>setup the git lfs (one time process)</td>
@@ -79,4 +89,3 @@
     <td>git lfs untrack **/*.png</td>
     <td>untrackes the mentioned files as arguments</td>
   </tr>
-</table>
