@@ -191,3 +191,23 @@ $ echo "this is a demo file" | git hash-object --stdin
 ```
 
 Now, you can see that git objects is made up of 4 fields as mentioned above.
+
+## Using git lfs
+
+git lfs (large file storage) uploads and downloads large files lazily. Read more here: [git lfs](https://www.atlassian.com/git/tutorials/git-lfs)
+
+**NOTE:** There's limit of bandwidth, size etc. in git lfs and the service provider for git. You can check [here](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage) as example.
+
+A generic approach to use `git lfs` is like this
+
+```sh
+$ sudo pacman -S git-lfs  # install git-lfs
+$ cd my_repo # go to repository (or create new one with 'git init')
+$ git lfs install # setup the lfs (do only once per user account (or repo))
+$ git lfs track **/*.png # track the large file/s (use same globbing as .gitignore), it'll create '.gitattributes' file
+$ git add .gitattributes  # if you want to add your local .gitattributes globally (recommended most of the time)
+$ git commit -m "adding .gitattributes" # only do this if you've staged the file
+$ git add **/*.png
+$ git commit -m "adding git lfs tracked png files"
+$ git push -u origin main
+```
